@@ -1,21 +1,24 @@
 using UnityEngine;
 
-public class GameData
+namespace DATASAKURA
 {
-	public LevelData LevelData = new LevelData();
-
-	public void Save()
+	public class GameData
 	{
-		Debug.Log("GameData is Save...");
-	}
+		public LevelData LevelData = new LevelData();
 
-	public void Load()
-	{
-		Debug.Log("GameData is Load...");
-	}
+		public void Save()
+		{
+			Debug.Log("GameData is Save...");
+		}
 
-	public void Reset()
-	{
-		LevelData.Reset();
+		public void Load()
+		{
+			Debug.Log("GameData is Load...");
+		}
+
+		public void Reset()
+		{
+			LevelData.Reset();
+		}
 	}
 }

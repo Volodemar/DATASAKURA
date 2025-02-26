@@ -1,25 +1,28 @@
 using Zenject;
 using UnityEngine;
 
-/// <summary>
-/// Инсталляция зависимостей для всего проекта
-/// </summary>	
-public class ProjectInstaller : MonoInstaller
+namespace DATASAKURA
 {
-    [Header("ScriptableObjects")]
-    [SerializeField] private DataBase dataBase;
-
-    [Header("Prefabs")] 
-    [SerializeField] private GameObject eventSystem;  
-
-    private GameData _gameData = new GameData();
-
-    public override void InstallBindings()
+    /// <summary>
+    /// Инсталляция зависимостей для всего проекта
+    /// </summary>	
+    public class ProjectInstaller : MonoInstaller
     {
-        Container.Bind<DataBase>().FromScriptableObject(dataBase).AsSingle();
+        [Header("ScriptableObjects")]
+        [SerializeField] private DataBase dataBase;
 
-        Container.Bind<GameData>().FromInstance(_gameData).AsSingle();
+        [Header("Prefabs")] 
+        [SerializeField] private GameObject eventSystem;  
 
-        DontDestroyOnLoad(Instantiate(eventSystem));
-    } 
+        private GameData _gameData = new GameData();
+
+        public override void InstallBindings()
+        {
+            Container.Bind<DataBase>().FromScriptableObject(dataBase).AsSingle();
+
+            Container.Bind<GameData>().FromInstance(_gameData).AsSingle();
+
+            DontDestroyOnLoad(Instantiate(eventSystem));
+        } 
+    }
 }

@@ -1,10 +1,13 @@
 using UnityEngine;
 
-/// <summary>
-/// База данных
-/// </summary>
-[CreateAssetMenu(fileName = "DataBase", menuName = "ScriptableObjects/DataBase")]
-public class DataBase : ScriptableObject
+namespace DATASAKURA
 {
-	public PrefabsScriptableObject prefabsData;
+	/// <summary>
+	/// База данных
+	/// </summary>
+	[CreateAssetMenu(fileName = "DataBase", menuName = "ScriptableObjects/DataBase")]
+	public class DataBase : ScriptableObject
+	{
+		public PrefabsScriptableObject prefabsData;
+	}
 }

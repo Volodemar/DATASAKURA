@@ -1,11 +1,14 @@
-/// <summary>
-/// Базовый интерфейс для всех животных
-/// </summary>
-public interface IAnimal
+namespace DATASAKURA
 {
-    AnimalType Type { get; } 
-    void Move(); 
-    void OnCollision(IAnimal other); 
-    void Die(); 
-    event System.Action<IAnimal> OnDeath; 
+    /// <summary>
+    /// Базовый интерфейс для всех животных
+    /// </summary>
+    public interface IAnimal
+    {
+        AnimalType Type { get; } 
+        void Move(); 
+        void OnCollision(IAnimal other); 
+        void Die(); 
+        event System.Action<IAnimal> OnDeath; 
+    }
 }

@@ -1,43 +1,49 @@
 ﻿using System;
 
-public class LevelData
+namespace DATASAKURA
 {
-	private int _victimsDeaths = 0;
-	private int _predatorDeaths = 0;
-	
-	public static event Action OnVictimDeath;
-	public static event Action OnPredatorDeath;
-
 	/// <summary>
-	/// Инициализация данных нового уровня.
+	/// Данные уровня, не сохраняются между сессиями.
 	/// </summary>
-    public void Reset()
+	public class LevelData
 	{
-		_victimsDeaths = 0;
-		_predatorDeaths = 0;
-	}
+		private int _victimsDeaths = 0;
+		private int _predatorDeaths = 0;
+		
+		public static event Action OnVictimDeath;
+		public static event Action OnPredatorDeath;
 
-	public int GetVictimsDeaths()
-	{
-		return _victimsDeaths;
-	}
+		/// <summary>
+		/// Инициализация данных нового уровня.
+		/// </summary>
+		public void Reset()
+		{
+			_victimsDeaths = 0;
+			_predatorDeaths = 0;
+		}
 
-	public int GetPredatorDeaths()
-	{
-		return _predatorDeaths;
-	}
+		public int GetVictimsDeaths()
+		{
+			return _victimsDeaths;
+		}
 
-	public void ModifyVictimsDeaths(int value)
-	{
-		_victimsDeaths = Math.Clamp(_victimsDeaths + value, 0, int.MaxValue);
+		public int GetPredatorDeaths()
+		{
+			return _predatorDeaths;
+		}
 
-		OnVictimDeath?.Invoke();
-	}
+		public void ModifyVictimsDeaths(int value)
+		{
+			_victimsDeaths = Math.Clamp(_victimsDeaths + value, 0, int.MaxValue);
 
-	public void ModifyPredatorDeaths(int value)
-	{
-		_predatorDeaths = Math.Clamp(_predatorDeaths + value, 0, int.MaxValue);
+			OnVictimDeath?.Invoke();
+		}
 
-		OnPredatorDeath?.Invoke();
+		public void ModifyPredatorDeaths(int value)
+		{
+			_predatorDeaths = Math.Clamp(_predatorDeaths + value, 0, int.MaxValue);
+
+			OnPredatorDeath?.Invoke();
+		}
 	}
 }

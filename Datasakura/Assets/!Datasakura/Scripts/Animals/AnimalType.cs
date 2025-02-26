@@ -1,8 +1,11 @@
-/// <summary>
-/// Тип животного жертва/хищник
-/// </summary>
-public enum AnimalType
+namespace DATASAKURA
 {
-    Victim,         
-    Predator        
+    /// <summary>
+    /// Тип животного жертва/хищник
+    /// </summary>
+    public enum AnimalType
+    {
+        Victim,         
+        Predator        
+    }
 }
