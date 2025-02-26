@@ -396,6 +396,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIWindowGame
       objectReference: {fileID: 0}
+    - target: {fileID: 814388074928197509, guid: 6c01e7d458dd0bf488c0865c4224725d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c01e7d458dd0bf488c0865c4224725d, type: 3}
 --- !u!4 &1571012005 stripped

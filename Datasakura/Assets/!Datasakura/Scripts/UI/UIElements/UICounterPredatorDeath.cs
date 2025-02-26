@@ -2,31 +2,34 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-/// <summary>
-/// Счетчик смертей жищников
-/// </summary>	
-public class UICounterPredatorDeath : MonoBehaviour
+namespace DATASAKURA
 {
-    private TextMeshProUGUI textNumberPredatorDeath;
-
-    [Inject] GameData _gameData;
-
-    private void OnEnable()
+    /// <summary>
+    /// Счетчик смертей жищников
+    /// </summary>	
+    public class UICounterPredatorDeath : MonoBehaviour
     {
-        textNumberPredatorDeath = GetComponent<TextMeshProUGUI>();
+        private TextMeshProUGUI textNumberPredatorDeath;
 
-        LevelData.OnPredatorDeath += UpdateCounter;
+        [Inject] GameData _gameData;
 
-        UpdateCounter();
-    }
+        private void OnEnable()
+        {
+            textNumberPredatorDeath = GetComponent<TextMeshProUGUI>();
 
-    private void OnDisable()
-    {
-        LevelData.OnPredatorDeath -= UpdateCounter;
-    }
+            LevelData.OnPredatorDeath += UpdateCounter;
 
-    private void UpdateCounter()
-    {
-        textNumberPredatorDeath.text =  _gameData.LevelData.GetPredatorDeaths().ToString();
+            UpdateCounter();
+        }
+
+        private void OnDisable()
+        {
+            LevelData.OnPredatorDeath -= UpdateCounter;
+        }
+
+        private void UpdateCounter()
+        {
+            textNumberPredatorDeath.text =  _gameData.LevelData.GetPredatorDeaths().ToString();
+        }
     }
 }

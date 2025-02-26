@@ -2,31 +2,34 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-/// <summary>
-/// Счетчик погибших жертв.
-/// </summary>	
-public class UICounterVictimsDeath : MonoBehaviour
+namespace DATASAKURA
 {
-    private TextMeshProUGUI textNumberVictimsDeath;
-
-    [Inject] GameData _gameData;
-
-    private void OnEnable()
+    /// <summary>
+    /// Счетчик погибших жертв.
+    /// </summary>	
+    public class UICounterVictimsDeath : MonoBehaviour
     {
-        textNumberVictimsDeath = GetComponent<TextMeshProUGUI>();
+        private TextMeshProUGUI textNumberVictimsDeath;
 
-        LevelData.OnVictimDeath += UpdateCounter;
+        [Inject] GameData _gameData;
 
-        UpdateCounter();
-    }
+        private void OnEnable()
+        {
+            textNumberVictimsDeath = GetComponent<TextMeshProUGUI>();
 
-    private void OnDisable()
-    {
-        LevelData.OnVictimDeath -= UpdateCounter;
-    }
+            LevelData.OnVictimDeath += UpdateCounter;
 
-    private void UpdateCounter()
-    {
-        textNumberVictimsDeath.text =  _gameData.LevelData.GetVictimsDeaths().ToString();
+            UpdateCounter();
+        }
+
+        private void OnDisable()
+        {
+            LevelData.OnVictimDeath -= UpdateCounter;
+        }
+
+        private void UpdateCounter()
+        {
+            textNumberVictimsDeath.text =  _gameData.LevelData.GetVictimsDeaths().ToString();
+        }
     }
 }

@@ -1,28 +1,31 @@
 using UnityEngine;
 using Zenject;
 
-/// <summary>
-/// Базовый класс окон
-/// </summary>	
-public class UIWindow : MonoBehaviour
+namespace DATASAKURA
 {
-    [Inject] private UIManager _uiManager;
-
     /// <summary>
-    /// Отображает текущее окно, скрывающее все другие окна.
-    /// </summary>
-    public void Show()
+    /// Базовый класс окон
+    /// </summary>	
+    public class UIWindow : MonoBehaviour
     {
-        _uiManager.HideAllUIWindows();
+        [Inject] private UIManager _uiManager;
 
-        this.gameObject.SetActive(true);
-    }
+        /// <summary>
+        /// Отображает текущее окно, скрывающее все другие окна.
+        /// </summary>
+        public void Show()
+        {
+            _uiManager.HideAllUIWindows();
 
-    /// <summary>
-    /// Скрывает текущее окно.
-    /// </summary>
-    public void Hide()
-    {
-        this.gameObject.SetActive(false);
+            this.gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// Скрывает текущее окно.
+        /// </summary>
+        public void Hide()
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }

@@ -1,10 +1,13 @@
-/// <summary>
-/// Помошник загрузки приложения
-/// </summary>	
-public static class LoadingHelper
+namespace DATASAKURA
 {
     /// <summary>
-    /// Свойство, указывающее, была ли предварительная загрузка выполнена.
-    /// </summary>    
-    public static bool IsPreloaded = false;
+    /// Помошник загрузки приложения
+    /// </summary>	
+    public static class LoadingHelper
+    {
+        /// <summary>
+        /// Свойство, указывающее, была ли предварительная загрузка выполнена.
+        /// </summary>    
+        public static bool IsPreloaded = false;
+    }
 }
