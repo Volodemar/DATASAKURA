@@ -1,7 +1,10 @@
-/// <summary>
-/// Окно игры
-/// </summary>	
-public class UIWindowGame : UIWindow
+namespace DATASAKURA
 {
-    
+    /// <summary>
+    /// Окно игры
+    /// </summary>	
+    public class UIWindowGame : UIWindow
+    {
+        
+    }
 }

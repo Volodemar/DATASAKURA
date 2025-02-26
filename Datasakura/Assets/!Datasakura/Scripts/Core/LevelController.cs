@@ -1,31 +1,33 @@
 using Zenject;
 using UnityEngine;
-using System.Linq;
 
-/// <summary>
-/// Контроллер геймплея уровня.
-/// </summary>	
-public class LevelController : MonoBehaviour
+namespace DATASAKURA
 {
-    [Inject] private GameData _gameData;
-    [Inject] private DataBase _dataBase;
-    [Inject] private UIManager _uiManager;    
-
     /// <summary>
-    /// Иниализация уровня.
-    /// </summary>    
-    public void OnInit()
+    /// Контроллер геймплея уровня.
+    /// </summary>	
+    public class LevelController : MonoBehaviour
     {
-        _uiManager.Init();
+        [Inject] private GameData _gameData;
+        [Inject] private DataBase _dataBase;
+        [Inject] private UIManager _uiManager;    
 
-        OnStart();
-    }
+        /// <summary>
+        /// Иниализация уровня.
+        /// </summary>    
+        public void OnInit()
+        {
+            _uiManager.Init();
 
-    /// <summary>
-    /// Стартуем уровень.
-    /// </summary>
-    private void OnStart()
-    {
-        _uiManager.GetWindow<UIWindowGame>().Show();
+            OnStart();
+        }
+
+        /// <summary>
+        /// Стартуем уровень.
+        /// </summary>
+        private void OnStart()
+        {
+            _uiManager.GetWindow<UIWindowGame>().Show();
+        }
     }
 }
