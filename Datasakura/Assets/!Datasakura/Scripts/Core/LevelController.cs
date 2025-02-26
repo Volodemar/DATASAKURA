@@ -1,14 +1,11 @@
 using Zenject;
 using UnityEngine;
-using System.Linq;
 
 /// <summary>
 /// Контроллер геймплея уровня.
 /// </summary>	
 public class LevelController : MonoBehaviour
 {
-    [Inject] private GameData _gameData;
-    [Inject] private DataBase _dataBase;
     [Inject] private UIManager _uiManager;    
 
     /// <summary>
