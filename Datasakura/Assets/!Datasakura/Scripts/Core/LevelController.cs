@@ -9,12 +9,15 @@ public class LevelController : MonoBehaviour
 {
     [Inject] private GameData _gameData;
     [Inject] private DataBase _dataBase;
+    [Inject] private UIManager _uiManager;    
 
     /// <summary>
     /// Иниализация уровня.
     /// </summary>    
     public void OnInit()
     {
+        _uiManager.Init();
+
         OnStart();
     }
 
@@ -23,16 +26,6 @@ public class LevelController : MonoBehaviour
     /// </summary>
     private void OnStart()
     {
-        // TODO: Test
-        var levelData = _gameData.LevelData;
-
-        levelData.ModifyPredatorDeaths(+1);
-        levelData.ModifyVictimsDeaths(+1);
-
-        Debug.Log(levelData.GetPredatorDeaths() + " смертей хищников.");
-
-        Debug.Log(levelData.GetVictimsDeaths() + " смертей жертв.");
-
-        Debug.Log(_dataBase.prefabsData.Animals.Count() + " количество зверей.");
+        _uiManager.GetWindow<UIWindowGame>().Show();
     }
 }
