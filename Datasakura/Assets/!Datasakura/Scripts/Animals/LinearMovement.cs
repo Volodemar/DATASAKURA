@@ -7,17 +7,22 @@ namespace DATASAKURA
     /// </summary>
     public class LinearMovement : IMovementStrategy
     {
-        private float speed; // Скорость движения
+        private float _forceMove; // Сила движения
+        private Rigidbody _rb; 
 
-        public LinearMovement(float speed)
+        public LinearMovement(Rigidbody rb, float forceMove)
         {
-            this.speed = speed;
+            _forceMove = forceMove;
+            _rb = rb;
         }
 
         public void Move(Transform transform)
         {
+            // Обнуляем скорость перед движением
+            _rb.velocity = Vector3.zero; 
+            
             // Двигаем объект вперед с постоянной скоростью
-            transform.position += transform.forward * speed * Time.deltaTime;
+            _rb.AddForce(transform.forward * _forceMove * Time.deltaTime, ForceMode.VelocityChange);
         }
     }
 }

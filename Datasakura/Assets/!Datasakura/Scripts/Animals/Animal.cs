@@ -14,12 +14,20 @@ namespace DATASAKURA
         protected IMovementStrategy movementStrategy;
 
         public void Move() => movementStrategy.Move(transform);
-        public abstract void OnCollision(IAnimal other);
+        public abstract void OnCollisionAnimal(IAnimal other);
 
         public virtual void Die()
         {
             OnDeath?.Invoke(this);
             Destroy(gameObject);
         }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.transform.TryGetComponent<IAnimal>(out IAnimal animal))
+            {
+                OnCollisionAnimal(animal);
+            }
+        }		
     }
 }

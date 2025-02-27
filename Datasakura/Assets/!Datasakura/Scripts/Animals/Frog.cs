@@ -7,13 +7,16 @@ namespace DATASAKURA
     /// </summary>
     public class Frog : Animal
     {
+        private Rigidbody rb;
         private float jumpInterval = 1f; // Прыжок каждую секунду
-        private float jumpDistance = 2f; // Дистанция прыжка
+        private float jumpForceUp = 300f; // Дистанция прыжка
+        private float jumpForceForvard = 400f; // Дистанция прыжка
 
         void Start()
         {
             Type = AnimalType.Victim;
-            movementStrategy = new JumpMovement(jumpInterval, jumpDistance);
+            rb = GetComponent<Rigidbody>();
+            movementStrategy = new JumpMovement(rb, jumpInterval, jumpForceUp, jumpForceForvard);
         }
 
         void Update()
@@ -22,19 +25,24 @@ namespace DATASAKURA
             KeepInBounds();
         }
 
-        public override void OnCollision(IAnimal other)
+        public override void OnCollisionAnimal(IAnimal animal)
         {
-            if (other.Type == AnimalType.Predator)
+            if (animal.Type == AnimalType.Predator)
                 Die();
         }
 
         private void KeepInBounds()
         {
             Vector3 pos = transform.position;
-            if (!IsInScreenBounds(pos))
-                transform.Rotate(0, 180, 0); // Разворот при выходе за экран
+
+            // Поворачиваем если вышли за пределы экрана и не возвращаемся обратно
+            if (!IsInScreenBounds(pos) && !IsInScreenBounds(pos + transform.forward * 2f))
+                transform.Rotate(0, 180, 0); 
         }
 
+        /// <summary>
+        /// Проверка, находится ли объект в пределах экрана
+        /// </summary>
         private bool IsInScreenBounds(Vector3 pos)
         {
             Vector3 screenPoint = Camera.main.WorldToScreenPoint(pos);

@@ -7,13 +7,16 @@ namespace DATASAKURA
     /// </summary>
     public class Snake : Animal
     {
+        private Rigidbody rb;
+        private float forceMove = 100f;
         private bool isDead = false;
         private TextMesh deliciousText;
 
         void Start()
         {
             Type = AnimalType.Predator;
-            movementStrategy = new LinearMovement(3f); // Скорость 3 единицы/сек
+            rb = GetComponent<Rigidbody>();
+            movementStrategy = new LinearMovement(rb, forceMove); 
             deliciousText = CreateDeliciousText();
         }
 
@@ -23,7 +26,7 @@ namespace DATASAKURA
             KeepInBounds();
         }
 
-        public override void OnCollision(IAnimal other)
+        public override void OnCollisionAnimal(IAnimal other)
         {
             if (isDead) return;
 
@@ -42,8 +45,8 @@ namespace DATASAKURA
         private void KeepInBounds()
         {
             Vector3 pos = transform.position;
-            if (!IsInScreenBounds(pos))
-                transform.Rotate(0, 180, 0); // Разворот при выходе за экран
+            if (!IsInScreenBounds(pos) && !IsInScreenBounds(pos + transform.forward * 5f))
+                transform.Rotate(0, 180, 0); 
         }
 
         private bool IsInScreenBounds(Vector3 pos)
@@ -56,7 +59,8 @@ namespace DATASAKURA
         public void ShowDeliciousText()
         {
             deliciousText.gameObject.SetActive(true);
-            Invoke(nameof(HideDeliciousText), 1f);
+
+            Invoke((nameof(HideDeliciousText)), 1f);
         }
 
         private void HideDeliciousText() => deliciousText.gameObject.SetActive(false);
@@ -65,7 +69,8 @@ namespace DATASAKURA
         {
             GameObject textObj = new GameObject("DeliciousText");
             textObj.transform.SetParent(transform);
-            textObj.transform.localPosition = Vector3.zero;
+            textObj.transform.localPosition = new Vector3(0, 0, 2f);
+            textObj.transform.localRotation = Quaternion.Euler(90, 0, 0);
             TextMesh text = textObj.AddComponent<TextMesh>();
             text.text = "Вкусно!";
             text.anchor = TextAnchor.MiddleCenter;

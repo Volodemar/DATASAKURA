@@ -7,7 +7,7 @@ namespace DATASAKURA
     {
         AnimalType Type { get; } 
         void Move(); 
-        void OnCollision(IAnimal other); 
+        void OnCollisionAnimal(IAnimal other);       
         void Die(); 
         event System.Action<IAnimal> OnDeath; 
     }
