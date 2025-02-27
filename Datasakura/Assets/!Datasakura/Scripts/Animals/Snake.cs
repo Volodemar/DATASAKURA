@@ -11,7 +11,7 @@ namespace DATASAKURA
     public class Snake : Animal
     {
         private Rigidbody rb;
-        private float forceMove = 100f;
+        private float forceMove = 1f;
         private bool isDead = false;
         private List<TextDelicious> poolDeliciousTexts = new List<TextDelicious>();
 

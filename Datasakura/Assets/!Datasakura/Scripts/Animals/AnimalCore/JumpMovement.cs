@@ -26,18 +26,20 @@ namespace DATASAKURA
             _timer += Time.deltaTime;
             if (_timer >= _jumpInterval)
             {
-                // Прыгаем если стоим на земле
-                if (transform.position.y == 0f)
-                    Jump(transform);
+                _timer = 0f;
 
-                _timer = 0f; 
+                // Прыгаем если стоим на земле
+                if (_rb.velocity.y <= 0.1f)
+                    Jump(transform);
             }
         }
 
         private void Jump(Transform transform)
         {
-            _rb.AddForce(transform.up * _jumpForceUp * Time.deltaTime,  ForceMode.VelocityChange);
-            _rb.AddForce(transform.forward + transform.up * _jumpForceForvard * Time.deltaTime,  ForceMode.VelocityChange);           
+            _rb.velocity = new Vector3(0f, _rb.velocity.y, 0f); 
+
+            _rb.AddForce(transform.up * _jumpForceUp,  ForceMode.VelocityChange);
+            _rb.AddForce(transform.forward * _jumpForceForvard,  ForceMode.VelocityChange);           
         }
     }
 }

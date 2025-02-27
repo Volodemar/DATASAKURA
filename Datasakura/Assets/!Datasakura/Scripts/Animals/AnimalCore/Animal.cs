@@ -1,4 +1,4 @@
-using System;
+using DATASAKURA.Borders;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +17,11 @@ namespace DATASAKURA
         protected IMovementStrategy movementStrategy;
         public void Move() => movementStrategy.Move(transform);
         public abstract void OnCollisionAnimal(IAnimal other);
+        public virtual void OnCollisionBorder(IBorder other)
+        {
+            transform.position += transform.forward * 0.1f;        
+            transform.Rotate(0, 180, 0);
+        }
         public abstract void Die();
 
         private void OnCollisionEnter(Collision other)
@@ -24,6 +29,11 @@ namespace DATASAKURA
             if (other.transform.TryGetComponent<IAnimal>(out IAnimal animal))
             {
                 OnCollisionAnimal(animal);
+            }
+
+            if (other.transform.TryGetComponent<IBorder>(out IBorder border))
+            {
+                OnCollisionBorder(border);
             }
         }		
     }

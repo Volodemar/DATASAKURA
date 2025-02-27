@@ -19,10 +19,10 @@ namespace DATASAKURA
         public void Move(Transform transform)
         {
             // Обнуляем скорость перед движением
-            _rb.velocity = Vector3.zero; 
+            _rb.velocity = new Vector3(0f, _rb.velocity.y, 0f); 
             
             // Двигаем объект вперед с постоянной скоростью
-            _rb.AddForce(transform.forward * _forceMove * Time.deltaTime, ForceMode.VelocityChange);
+            _rb.AddForce(transform.forward * _forceMove, ForceMode.VelocityChange);
         }
     }
 }

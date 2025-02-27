@@ -55,7 +55,7 @@ namespace DATASAKURA
                 if(prefab.name == prefabName)
                 {
                     var randomRotation = Quaternion.Euler(0f, UnityEngine.Random.Range(0f, 360f), 0f);
-                    var randomPosition = new Vector3(UnityEngine.Random.Range(-10f, 10f), 0f, UnityEngine.Random.Range(-10f, 10f));
+                    var randomPosition = new Vector3(UnityEngine.Random.Range(-10f, 10f), 3f, UnityEngine.Random.Range(-10f, 10f));
 
                     return _container.InstantiatePrefabForComponent<Animal>(prefab, randomPosition, randomRotation, _animalsContent); 
                 }

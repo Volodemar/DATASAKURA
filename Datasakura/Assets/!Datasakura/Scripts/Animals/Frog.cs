@@ -9,8 +9,8 @@ namespace DATASAKURA
     {
         private Rigidbody _rb;
         private float _jumpInterval = 1f; // Прыжок каждую секунду
-        private float _jumpForceUp = 300f; // Дистанция прыжка
-        private float _jumpForceForvard = 400f; // Дистанция прыжка
+        private float _jumpForceUp = 4f; // Сила прыжка
+        private float _jumpForceForvard = 4f; // Сила прыжка
 
         void Start()
         {
@@ -39,7 +39,7 @@ namespace DATASAKURA
             Vector3 pos = transform.position;
 
             // Поворачиваем если вышли за пределы экрана и не возвращаемся обратно
-            if (!IsInScreenBounds(pos) && !IsInScreenBounds(pos + transform.forward * 2f))
+            if (!IsInScreenBounds(pos) && !IsInScreenBounds(pos + transform.forward * 5f))
                 transform.Rotate(0, 180, 0); 
         }
 
