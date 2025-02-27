@@ -70,8 +70,14 @@ namespace DATASAKURA
 
             if (deliciousText == null)
             {
-                var rotation = _dataBase.prefabsData.TextDeliciousPrefab.transform.rotation;
-                deliciousText = _container.InstantiatePrefabForComponent<TextDelicious>(_dataBase.prefabsData.TextDeliciousPrefab, transform.position, rotation, transform);
+                deliciousText = _container.InstantiatePrefabForComponent<TextDelicious>
+                    (
+                        _dataBase.prefabsData.TextDeliciousPrefab, 
+                        transform.position, 
+                        Quaternion.identity, 
+                        transform
+                    );
+                    
                 poolDeliciousTexts.Add(deliciousText);     
             }
 

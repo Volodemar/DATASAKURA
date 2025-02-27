@@ -16,6 +16,8 @@ namespace DATASAKURA
 
             transform.parent = null;
             transform.position = parent.position + Vector3.back;
+            transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+
             gameObject.SetActive(true);
 
             StartCoroutine(Hide());       
