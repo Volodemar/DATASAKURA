@@ -9,20 +9,20 @@ namespace DATASAKURA
     public class SceneInstaller : MonoInstaller
     {
         [Header("Prefabs")]
-        [SerializeField] private GameManager gameManager;
+        [SerializeField] private GameManager _gameManager;
 
         [Header("GameObjects")]
-        [SerializeField] private LevelController levelController;
-        [SerializeField] private UIManager uiManager;
+        [SerializeField] private LevelController _levelController;
+        [SerializeField] private UIManager _uiManager;
 
         public override void InstallBindings()
         {
-            Container.Bind<LevelController>().FromComponentOn(levelController.gameObject).AsSingle();
+            Container.Bind<LevelController>().FromComponentOn(_levelController.gameObject).AsSingle();
 
-            Container.Bind<UIManager>().FromComponentOn(uiManager.gameObject).AsSingle();
+            Container.Bind<UIManager>().FromComponentOn(_uiManager.gameObject).AsSingle();
 
             // Объект должен создаваться на сцене
-            Container.Bind<GameManager>().FromComponentInNewPrefab(gameManager.gameObject).AsSingle().NonLazy();        
+            Container.Bind<GameManager>().FromComponentInNewPrefab(_gameManager.gameObject).AsSingle().NonLazy();        
         }
     }
 }

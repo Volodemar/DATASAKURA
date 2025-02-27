@@ -9,7 +9,7 @@ namespace DATASAKURA
     [CreateAssetMenu(fileName = "PrefabsData", menuName = "ScriptableObjects/PrefabsData")]
     public class PrefabsScriptableObject : ScriptableObject
     {
-        public List<GameObject> Animals = new List<GameObject>();
+        public List<GameObject> AnimalPrefabs = new List<GameObject>();
         public TextDelicious TextDeliciousPrefab;
     }
 }

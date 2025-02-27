@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda3b5a248a33a34997e6b3d7cb61ac5, type: 3}
   m_Name: PrefabsData
   m_EditorClassIdentifier: 
-  Animals: []
+  AnimalPrefabs:
+  - {fileID: 2250924823839527516, guid: 6c074a4f0952ccc43a5cafc93ab91aa9, type: 3}
+  - {fileID: 2781476732866579925, guid: 062071d13b3e6474591108ec102e73f6, type: 3}
   TextDeliciousPrefab: {fileID: 4948445674059603875, guid: fb2a504e75aedf5468f6d321c00a5be4,
     type: 3}
