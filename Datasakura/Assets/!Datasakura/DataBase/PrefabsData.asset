@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: PrefabsData
   m_EditorClassIdentifier: 
   Animals: []
+  TextDeliciousPrefab: {fileID: 4948445674059603875, guid: fb2a504e75aedf5468f6d321c00a5be4,
+    type: 3}

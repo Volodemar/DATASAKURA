@@ -27,8 +27,6 @@ namespace DATASAKURA
 
         public override void OnCollisionAnimal(IAnimal animal)
         {
-            if (animal.Type == AnimalType.Predator)
-                Die();
         }
 
         private void KeepInBounds()
@@ -49,5 +47,12 @@ namespace DATASAKURA
             return screenPoint.x > 0 && screenPoint.x < Screen.width &&
                 screenPoint.y > 0 && screenPoint.y < Screen.height;
         }
+
+        public override void Die()
+        {
+            _gameData.LevelData.ModifyVictimsDeaths(1);
+
+            Destroy(gameObject);
+        }        
     }
 }

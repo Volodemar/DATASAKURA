@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using Zenject;
 
 namespace DATASAKURA
 {
@@ -10,14 +13,13 @@ namespace DATASAKURA
         private Rigidbody rb;
         private float forceMove = 100f;
         private bool isDead = false;
-        private TextMesh deliciousText;
+        private List<TextDelicious> poolDeliciousTexts = new List<TextDelicious>();
 
         void Start()
         {
             Type = AnimalType.Predator;
             rb = GetComponent<Rigidbody>();
-            movementStrategy = new LinearMovement(rb, forceMove); 
-            deliciousText = CreateDeliciousText();
+            movementStrategy = new LinearMovement(rb, forceMove);          
         }
 
         void Update()
@@ -58,24 +60,27 @@ namespace DATASAKURA
 
         public void ShowDeliciousText()
         {
-            deliciousText.gameObject.SetActive(true);
+            var deliciousText = poolDeliciousTexts.Where(t => !t.gameObject.activeSelf).FirstOrDefault();
 
-            Invoke((nameof(HideDeliciousText)), 1f);
+            if (deliciousText == null)
+            {
+                var rotation = _dataBase.prefabsData.TextDeliciousPrefab.transform.rotation;
+                deliciousText = _container.InstantiatePrefabForComponent<TextDelicious>(_dataBase.prefabsData.TextDeliciousPrefab, transform.position, rotation, transform);
+                poolDeliciousTexts.Add(deliciousText);     
+            }
+
+            deliciousText.Show(transform);
         }
 
-        private void HideDeliciousText() => deliciousText.gameObject.SetActive(false);
-
-        private TextMesh CreateDeliciousText()
+        public override void Die()
         {
-            GameObject textObj = new GameObject("DeliciousText");
-            textObj.transform.SetParent(transform);
-            textObj.transform.localPosition = new Vector3(0, 0, 2f);
-            textObj.transform.localRotation = Quaternion.Euler(90, 0, 0);
-            TextMesh text = textObj.AddComponent<TextMesh>();
-            text.text = "Вкусно!";
-            text.anchor = TextAnchor.MiddleCenter;
-            text.gameObject.SetActive(false);
-            return text;
+            _gameData.LevelData.ModifyPredatorDeaths(1);
+
+            // Т.к. текст может быть отвязан от родителя, нужно его уничтожить отдельно.
+            foreach (var text in poolDeliciousTexts)
+                Destroy(text.gameObject);
+
+            Destroy(gameObject);
         }
     }
 }

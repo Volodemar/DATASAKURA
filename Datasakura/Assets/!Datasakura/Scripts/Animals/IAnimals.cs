@@ -9,6 +9,5 @@ namespace DATASAKURA
         void Move(); 
         void OnCollisionAnimal(IAnimal other);       
         void Die(); 
-        event System.Action<IAnimal> OnDeath; 
     }
 }

@@ -10,5 +10,6 @@ namespace DATASAKURA
     public class PrefabsScriptableObject : ScriptableObject
     {
         public List<GameObject> Animals = new List<GameObject>();
+        public TextDelicious TextDeliciousPrefab;
     }
 }
