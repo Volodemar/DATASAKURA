@@ -156,7 +156,7 @@ PrefabInstance:
     - target: {fileID: 6205537932062275870, guid: 2e9d6a39691fe344abbfd3443c4f9832,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6205537932062275870, guid: 2e9d6a39691fe344abbfd3443c4f9832,
         type: 3}
@@ -220,7 +220,7 @@ PrefabInstance:
     - target: {fileID: 3616581700059124312, guid: b7bff63650c38144099d2915938b11ca,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3616581700059124312, guid: b7bff63650c38144099d2915938b11ca,
         type: 3}
@@ -435,7 +435,23 @@ PrefabInstance:
       objectReference: {fileID: 1009145434}
     - target: {fileID: 7789996399293976994, guid: 7a6fac987d8792b44ad54f3ace97ac4a,
         type: 3}
+      propertyPath: _uiManager
+      value: 
+      objectReference: {fileID: 1009145434}
+    - target: {fileID: 7789996399293976994, guid: 7a6fac987d8792b44ad54f3ace97ac4a,
+        type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 3661381505819940549, guid: 60940914df2d851449e1648da6e2b7c0,
+        type: 3}
+    - target: {fileID: 7789996399293976994, guid: 7a6fac987d8792b44ad54f3ace97ac4a,
+        type: 3}
       propertyPath: levelController
+      value: 
+      objectReference: {fileID: 1571012006}
+    - target: {fileID: 7789996399293976994, guid: 7a6fac987d8792b44ad54f3ace97ac4a,
+        type: 3}
+      propertyPath: _levelController
       value: 
       objectReference: {fileID: 1571012006}
     - target: {fileID: 7789996399293976996, guid: 7a6fac987d8792b44ad54f3ace97ac4a,

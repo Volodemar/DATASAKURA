@@ -1,5 +1,6 @@
 using Zenject;
 using UnityEngine;
+using System.Collections;
 
 namespace DATASAKURA
 {
@@ -8,9 +9,8 @@ namespace DATASAKURA
     /// </summary>	
     public class LevelController : MonoBehaviour
     {
-        [Inject] private GameData _gameData;
-        [Inject] private DataBase _dataBase;
         [Inject] private UIManager _uiManager;    
+        [Inject] private DiContainer _container;
 
         /// <summary>
         /// Иниализация уровня.
@@ -28,6 +28,22 @@ namespace DATASAKURA
         private void OnStart()
         {
             _uiManager.GetWindow<UIWindowGame>().Show();
+
+            StartCoroutine(SpawnTimer(1f));
+        }
+
+        private IEnumerator SpawnTimer(float time)
+        {
+            AnimalFactory animalFactory = new AnimalFactory(_container);
+
+            while(true)
+            {
+                yield return new WaitForSeconds(time);
+
+                string[] types = { "Frog", "Snake" };
+                string randomType = types[Random.Range(0, types.Length)];
+                Animal animal = animalFactory.CreateAnimal(randomType);               
+            }
         }
     }
 }
