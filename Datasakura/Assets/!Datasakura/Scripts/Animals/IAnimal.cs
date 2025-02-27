@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace DATASAKURA
 {
     /// <summary>
@@ -5,6 +7,8 @@ namespace DATASAKURA
     /// </summary>
     public interface IAnimal
     {
+        Transform transform { get; }  
+        GameObject gameObject { get; }        
         AnimalType Type { get; } 
         void Move(); 
         void OnCollisionAnimal(IAnimal other);       

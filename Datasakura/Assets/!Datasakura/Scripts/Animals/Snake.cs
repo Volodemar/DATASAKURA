@@ -40,7 +40,13 @@ namespace DATASAKURA
             }
             else if (other.Type == AnimalType.Predator)
             {
-                // Реализовать логику умирает один из хищников
+                // Кто меньше тот и слабее
+                if (other.gameObject.GetInstanceID() < gameObject.GetInstanceID())
+                {
+                    other.Die(); 
+
+                    ShowDeliciousText();      
+                }          
             }
         }
 

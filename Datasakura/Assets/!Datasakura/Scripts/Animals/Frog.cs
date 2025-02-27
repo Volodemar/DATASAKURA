@@ -7,16 +7,16 @@ namespace DATASAKURA
     /// </summary>
     public class Frog : Animal
     {
-        private Rigidbody rb;
-        private float jumpInterval = 1f; // Прыжок каждую секунду
-        private float jumpForceUp = 300f; // Дистанция прыжка
-        private float jumpForceForvard = 400f; // Дистанция прыжка
+        private Rigidbody _rb;
+        private float _jumpInterval = 1f; // Прыжок каждую секунду
+        private float _jumpForceUp = 300f; // Дистанция прыжка
+        private float _jumpForceForvard = 400f; // Дистанция прыжка
 
         void Start()
         {
             Type = AnimalType.Victim;
-            rb = GetComponent<Rigidbody>();
-            movementStrategy = new JumpMovement(rb, jumpInterval, jumpForceUp, jumpForceForvard);
+            _rb = GetComponent<Rigidbody>();
+            movementStrategy = new JumpMovement(_rb, _jumpInterval, _jumpForceUp, _jumpForceForvard);
         }
 
         void Update()
@@ -27,6 +27,11 @@ namespace DATASAKURA
 
         public override void OnCollisionAnimal(IAnimal animal)
         {
+            if (animal.Type == AnimalType.Victim)
+            {
+                // Отбрасываем от встреченной жертвы
+                _rb.AddExplosionForce(100f, animal.transform.position, 5f); 
+            }
         }
 
         private void KeepInBounds()
