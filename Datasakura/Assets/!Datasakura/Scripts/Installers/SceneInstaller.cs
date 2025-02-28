@@ -8,6 +8,8 @@ namespace DATASAKURA
     /// </summary>	
     public class SceneInstaller : MonoInstaller
     {
+        [Inject] private DataBase _dataBase;
+
         [Header("Prefabs")]
         [SerializeField] private GameManager _gameManager;
 
@@ -22,7 +24,12 @@ namespace DATASAKURA
             Container.Bind<UIManager>().FromComponentOn(_uiManager.gameObject).AsSingle();
 
             // Объект должен создаваться на сцене
-            Container.Bind<GameManager>().FromComponentInNewPrefab(_gameManager.gameObject).AsSingle().NonLazy();        
+            Container.Bind<GameManager>().FromComponentInNewPrefab(_gameManager.gameObject).AsSingle().NonLazy();    
+
+            Container.Bind<ObjectPool<TextDelicious>>()
+            .AsSingle()
+            .WithArguments(_dataBase.prefabsData.TextDeliciousPrefab, 5) 
+            .NonLazy();                
         }
     }
 }
