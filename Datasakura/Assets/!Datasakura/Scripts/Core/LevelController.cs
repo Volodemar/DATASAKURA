@@ -9,8 +9,8 @@ namespace DATASAKURA
     /// </summary>	
     public class LevelController : MonoBehaviour
     {
-        [Inject] private UIManager _uiManager;    
-        [Inject] private DiContainer _container;
+        [Inject] private DiContainer _container;        
+        [Inject] private UIManager _uiManager;
 
         /// <summary>
         /// Иниализация уровня.

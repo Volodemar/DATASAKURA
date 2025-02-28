@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 using Zenject;
 
 namespace DATASAKURA
@@ -10,10 +8,11 @@ namespace DATASAKURA
     /// </summary>
     public class Snake : Animal
     {
+        [Inject] private ObjectPool<TextDelicious> _poolTextDelicious;
+
         private Rigidbody rb;
         private float forceMove = 1f;
         private bool isDead = false;
-        private List<TextDelicious> poolDeliciousTexts = new List<TextDelicious>();
 
         void Start()
         {
@@ -36,7 +35,7 @@ namespace DATASAKURA
             {
                 other.Die();
 
-                ShowDeliciousText();
+                SpawnDeliciousText();
             }
             else if (other.Type == AnimalType.Predator)
             {
@@ -45,7 +44,7 @@ namespace DATASAKURA
                 {
                     other.Die(); 
 
-                    ShowDeliciousText();      
+                    SpawnDeliciousText();      
                 }          
             }
         }
@@ -64,33 +63,16 @@ namespace DATASAKURA
                 screenPoint.y > 0 && screenPoint.y < Screen.height;
         }
 
-        public void ShowDeliciousText()
+        public void SpawnDeliciousText()
         {
-            var deliciousText = poolDeliciousTexts.Where(t => !t.gameObject.activeSelf).FirstOrDefault();
+            TextDelicious text = _poolTextDelicious.Get();   
 
-            if (deliciousText == null)
-            {
-                deliciousText = _container.InstantiatePrefabForComponent<TextDelicious>
-                    (
-                        _dataBase.prefabsData.TextDeliciousPrefab, 
-                        transform.position, 
-                        Quaternion.identity, 
-                        transform
-                    );
-                    
-                poolDeliciousTexts.Add(deliciousText);     
-            }
-
-            deliciousText.Show(transform);
+            text.Init(transform.position, _poolTextDelicious);
         }
 
         public override void Die()
         {
             _gameData.LevelData.ModifyPredatorDeaths(1);
-
-            // Т.к. текст может быть отвязан от родителя, нужно его уничтожить отдельно.
-            foreach (var text in poolDeliciousTexts)
-                Destroy(text.gameObject);
 
             Destroy(gameObject);
         }
